@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -15,7 +16,11 @@ func main() {
 	defer f.Close()
 
 	// Loop trough all PE sections.
+	sep := strings.Repeat("-", 17)
+	fmt.Println(sep)
 	for _, section := range f.Sections {
-		fmt.Println(section)
+		fmt.Printf("Section: %s\n", section.Name)
+		fmt.Printf("Size: %d bytes\n", section.Size)
+		fmt.Println(sep)
 	}
 }
