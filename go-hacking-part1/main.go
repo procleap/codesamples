@@ -36,8 +36,7 @@ func main() {
 	sep := strings.Repeat("-", 80)
 	fmt.Println(sep)
 	for _, section := range f.Sections {
-		fmt.Printf("Section: %s\n", section.Name)
-		fmt.Printf("Size: %d bytes\n", section.Size)
+		fmt.Printf("Section %s (%d bytes)\n", section.Name, section.Size)
 		Dig(section, caveSize)
 		fmt.Println(sep)
 	}
