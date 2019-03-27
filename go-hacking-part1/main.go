@@ -29,7 +29,10 @@ func main() {
 
 // Dig searches PE section for a code cave that is at least n bytes in size.
 func Dig(s *pe.Section, n int) {
-	data, _ := s.Data()
+	data, err := s.Data()
+	if err != nil {
+		log.Fatalln(err)
+	}
 	var index, begin, end, count int
 
 	// Start digging...
