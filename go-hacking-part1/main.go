@@ -13,9 +13,7 @@ import (
 func main() {
 	// Validate command line parameters.
 	if len(os.Args) != 3 {
-		fmt.Printf("Usage:\n\t%s <file.exe> <cave size>\n", filepath.Base(os.Args[0]))
-		fmt.Printf("Example:\n\t%s calc.exe 80\n", filepath.Base(os.Args[0]))
-		os.Exit(1)
+		Usage()
 	}
 
 	caveSize, err := strconv.Atoi(os.Args[2])
@@ -71,4 +69,11 @@ func Dig(s *pe.Section, n int) {
 	if index == 0 {
 		fmt.Println("Sorry, no cave found :(")
 	}
+}
+
+// Usage prints the program usage to stdout and exit.
+func Usage() {
+	fmt.Printf("Usage:\n\t%s <file.exe> <cave size>\n", filepath.Base(os.Args[0]))
+	fmt.Printf("Example:\n\t%s calc.exe 80\n", filepath.Base(os.Args[0]))
+	os.Exit(1)
 }
