@@ -61,9 +61,9 @@ func Dig(s *pe.Section, n int) {
 			begin = i - count
 			end = i
 			fmt.Printf("# Cave %d\n", index)
-			fmt.Printf("\tSize         : %d bytes\n", count)
-			fmt.Printf("\tStart Address: %#x\n", uint32(begin)+s.Offset)
-			fmt.Printf("\tEnd Address  : %#x\n", uint32(end)+s.Offset)
+			fmt.Printf("\tSize        : %d bytes\n", count)
+			fmt.Printf("\tOffset Start: %#x\n", uint32(begin)+s.Offset)
+			fmt.Printf("\tOffset End  : %#x\n", uint32(end)+s.Offset)
 			fallthrough
 		default:
 			count = 0 // reset counter to keep digging.
