@@ -35,9 +35,9 @@ func main() {
 	// Loop trough all PE sections.
 	sep := strings.Repeat("-", 80)
 	fmt.Println(sep)
-	for _, section := range f.Sections {
-		fmt.Printf("Section %s (%d bytes)\n", section.Name, section.Size)
-		Dig(section, caveSize)
+	for _, s := range f.Sections {
+		fmt.Printf("Section %s (%d bytes)\n", s.Name, s.Size)
+		Dig(s, caveSize)
 		fmt.Println(sep)
 	}
 }
