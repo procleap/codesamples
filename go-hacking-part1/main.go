@@ -16,6 +16,7 @@ func main() {
 		Usage()
 	}
 
+	// Check if we got the correct number for cave size.
 	caveSize, err := strconv.Atoi(os.Args[2])
 	if err != nil {
 		log.Fatalln(err)
@@ -24,6 +25,7 @@ func main() {
 		Usage()
 	}
 
+	// Try to open input file or exit program otherwise.
 	f, err := pe.Open(os.Args[1])
 	if err != nil {
 		log.Fatalln(err)
