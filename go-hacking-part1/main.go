@@ -19,6 +19,9 @@ func main() {
 	caveSize, err := strconv.Atoi(os.Args[2])
 	if err != nil {
 		log.Fatalln(err)
+	} else if caveSize <= 0 {
+		fmt.Println("Error: <cave size> must be bigger than zero")
+		Usage()
 	}
 
 	f, err := pe.Open(os.Args[1])
