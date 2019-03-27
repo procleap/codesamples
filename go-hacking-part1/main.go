@@ -49,7 +49,6 @@ func Dig(s *pe.Section, n int) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
 	// Start digging...
 	var index, begin, end, count int
 	for i, v := range data {
@@ -70,7 +69,6 @@ func Dig(s *pe.Section, n int) {
 			count = 0 // reset counter to keep digging.
 		}
 	}
-
 	if index == 0 {
 		fmt.Println("Sorry, no cave found :(")
 	}
