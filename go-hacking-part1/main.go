@@ -5,11 +5,19 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
 
 func main() {
+	// Validate command line parameters.
+	if len(os.Args) != 3 {
+		fmt.Printf("Usage:\n\t%s <file.exe> <cave size>\n", filepath.Base(os.Args[0]))
+		fmt.Printf("Example:\n\t%s calc.exe 80\n", filepath.Base(os.Args[0]))
+		os.Exit(1)
+	}
+
 	caveSize, err := strconv.Atoi(os.Args[2])
 	if err != nil {
 		log.Fatalln(err)
