@@ -32,13 +32,8 @@ func main() {
 	}
 	defer f.Close()
 
-<<<<<<< HEAD
 	// Loop through all PE sections.
-	sep := strings.Repeat("-", 80)
-=======
-	// Loop trough all PE sections.
 	sep := strings.Repeat("-", 35)
->>>>>>> 27861ad3b444bbde7284c32323cd3ee7cbf5f800
 	fmt.Println(sep)
 	for _, s := range f.Sections {
 		fmt.Printf("Section %s (%d bytes)\n", s.Name, s.Size)
