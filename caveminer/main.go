@@ -32,7 +32,7 @@ func main() {
 	}
 	defer f.Close()
 
-	// Loop trough all PE sections.
+	// Loop through all PE sections.
 	sep := strings.Repeat("-", 80)
 	fmt.Println(sep)
 	for _, s := range f.Sections {
