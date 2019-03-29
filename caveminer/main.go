@@ -52,9 +52,9 @@ func Dig(s *pe.Section, n int) {
 
 	// Start digging...
 	var index, begin, end, count int
-	for i, byte := range data {
+	for i, b := range data {
 		switch {
-		case byte == 0:
+		case b == 0:
 			count++
 		case count >= n:
 			// Cave found!
