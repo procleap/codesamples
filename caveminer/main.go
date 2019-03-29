@@ -48,6 +48,8 @@ func Dig(s *pe.Section, n int) {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	data = append(data, 0xff) // Sentinel.
+
 	// Start digging...
 	var index, begin, end, count int
 	for i, byte := range data {
