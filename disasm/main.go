@@ -14,5 +14,6 @@ func main() {
 	}
 	defer f.Close()
 
-	fmt.Println(f.Section(".text"))
+	code, _ := f.Section(".text").Data()
+	fmt.Printf("% x\n", code)
 }
