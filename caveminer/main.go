@@ -71,7 +71,7 @@ func Dig(s *pe.Section, n int) {
 		}
 	}
 	if index == 0 {
-		fmt.Println("Sorry, no cave found :(")
+		fmt.Println("No caves found.")
 	}
 }
 
