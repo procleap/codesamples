@@ -28,11 +28,14 @@ func main() {
 
 // Disasm disassembles either 32 or 64-bit intel instructions.
 func Disasm(data []byte, mode uint64) {
+	disasList := make(map[int]string)
 	p := 0
+
 	for p < len(data) {
 		op, _ := x86asm.Decode(data[p:], int(mode))
 		x86asm.IntelSyntax(op, mode, nil)
-		fmt.Println(x86asm.IntelSyntax(op, mode, nil))
+		disasList[p] = x86asm.IntelSyntax(op, mode, nil)
 		p += op.Len
 	}
+	fmt.Println(disasList)
 }
