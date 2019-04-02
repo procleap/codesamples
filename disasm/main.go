@@ -9,9 +9,10 @@ import (
 	"golang.org/x/arch/x86/x86asm"
 )
 
+// Processor modes: either 32 or 64-bit.
 const (
-	bit32 = 32
-	bit64 = 64
+	mode32 = 32
+	mode64 = 64
 )
 
 func main() {
@@ -22,16 +23,16 @@ func main() {
 	defer f.Close()
 
 	code, _ := f.Section(".text").Data()
-	Disasm(code, bit32)
+	Disasm(code, mode32)
 }
 
 // Disasm disassembles either 32 or 64-bit intel instructions.
-func Disasm(data []byte, bit uint64) {
+func Disasm(data []byte, mode uint64) {
 	p := 0
 	for p < len(data) {
-		op, _ := x86asm.Decode(data[p:], int(bit))
-		x86asm.IntelSyntax(op, bit, nil)
-		fmt.Println(x86asm.IntelSyntax(op, bit, nil))
+		op, _ := x86asm.Decode(data[p:], int(mode))
+		x86asm.IntelSyntax(op, mode, nil)
+		fmt.Println(x86asm.IntelSyntax(op, mode, nil))
 		p += op.Len
 	}
 }
