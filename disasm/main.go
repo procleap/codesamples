@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 
 	"golang.org/x/arch/x86/x86asm"
 )
@@ -37,5 +38,17 @@ func Disasm(data []byte, mode uint64) {
 		disasList[p] = x86asm.IntelSyntax(op, mode, nil)
 		p += op.Len
 	}
-	fmt.Println(disasList)
+
+	Print(disasList)
+}
+
+func Print(m map[int]string) {
+	var keys []int
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Ints(keys)
+	for _, k := range keys {
+		fmt.Printf("%8x:    %s\n", k, m[k])
+	}
 }
