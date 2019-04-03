@@ -24,18 +24,20 @@ func main() {
 	defer f.Close()
 
 	// Get PE EntryPoint.
-	var ib, entryPoint uint64
+	var ib, entryPoint, mode uint64
 	switch oh := f.OptionalHeader.(type) {
 	case *pe.OptionalHeader32:
 		ib = uint64(oh.ImageBase)
 		entryPoint = ib + uint64(oh.AddressOfEntryPoint)
+		mode = mode32
 	case *pe.OptionalHeader64:
 		ib = oh.ImageBase
 		entryPoint = ib + uint64(oh.AddressOfEntryPoint)
+		mode = mode64
 	}
 
 	code, _ := f.Section(".text").Data()
-	Disasm(code, mode64, entryPoint)
+	Disasm(code, mode, entryPoint)
 }
 
 // Disasm disassembles either 32 or 64-bit intel instructions.
