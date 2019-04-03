@@ -20,7 +20,7 @@ const (
 type Disasm struct {
 	text       []byte
 	ib         uint64
-	entry      uint64
+	bc         uint64 // BaseOfCode
 	mode       uint64
 	disasmList map[uint64]string
 }
@@ -53,11 +53,11 @@ func (d *Disasm) init(filename string) error {
 	switch oh := f.OptionalHeader.(type) {
 	case *pe.OptionalHeader32:
 		d.ib = uint64(oh.ImageBase)
-		d.entry = d.ib + uint64(oh.AddressOfEntryPoint)
+		d.bc = uint64(oh.BaseOfCode)
 		d.mode = mode32
 	case *pe.OptionalHeader64:
 		d.ib = oh.ImageBase
-		d.entry = d.ib + uint64(oh.AddressOfEntryPoint)
+		d.bc = uint64(oh.BaseOfCode)
 		d.mode = mode64
 	}
 
@@ -70,7 +70,7 @@ func (d *Disasm) Disasm() {
 	for p < len(d.text) {
 		op, _ := x86asm.Decode(d.text[p:], int(d.mode))
 		x86asm.IntelSyntax(op, d.mode, nil)
-		d.disasmList[uint64(p)+d.ib] = x86asm.IntelSyntax(op, d.mode, nil)
+		d.disasmList[uint64(p)+d.ib+d.bc] = x86asm.IntelSyntax(op, d.mode, nil)
 		p += op.Len
 	}
 	d.print()
