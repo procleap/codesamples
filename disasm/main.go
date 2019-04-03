@@ -7,6 +7,12 @@ import (
 )
 
 func main() {
+	// Validate command line parameters.
+	if len(os.Args) != 2 {
+		Usage()
+	}
+
+	// Let's go!
 	d := NewDisasm(os.Args[1])
 	d.Disasm()
 }
