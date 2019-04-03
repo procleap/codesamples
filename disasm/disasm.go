@@ -84,6 +84,6 @@ func (d *Disasm) print() {
 	}
 	sort.Slice(keys, func(i, j int) bool { return keys[i] < keys[j] })
 	for _, k := range keys {
-		fmt.Printf("%x: %s\n", k, d.disasmList[k])
+		fmt.Printf("0x%x: %s\n", k, d.disasmList[k])
 	}
 }
