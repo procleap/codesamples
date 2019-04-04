@@ -78,7 +78,7 @@ func (d *Disasm) Disasm() {
 
 // print prints disassembly list to standard output.
 func (d *Disasm) print() {
-	var keys []uint64
+	keys := make([]uint64, 0, len(d.disasmList))
 	for k := range d.disasmList {
 		keys = append(keys, k)
 	}
